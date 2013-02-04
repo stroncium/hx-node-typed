@@ -4,17 +4,7 @@ async.Build = function() { }
 var Test = function() { }
 Test.__interfaces__ = [async.Build];
 Test.goAsync = function(cb) {
-	node.Fs.readdir(".",function(__e,list) {
-		if(__e == null) {
-			console.log(list);
-			node.Fs.readFile("text","utf8",function(__e1,text) {
-				if(__e1 == null) {
-					console.log(text);
-					cb(null);
-				} else cb(__e1);
-			});
-		} else cb(__e);
-	});
+	cb(null);
 }
 Test.main = function() {
 	Test.goAsync(Test.afterAsync);

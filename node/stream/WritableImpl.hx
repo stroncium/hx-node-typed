@@ -1,6 +1,6 @@
 package node.stream;
 
-interface WritableImpl extends node.EventEmitter<String>, implements Writable{
+extern class WritableImpl extends node.EventEmitter<String>, implements Writable{
   public function hasEventDrain():Void;
   public function hasEventError():Void;
   public function hasEventClose():Void;
