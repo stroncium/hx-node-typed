@@ -1,7 +1,0 @@
-<project name="node-typed" url="https://github.com/stroncium/hx-node-typed" license="MIT">
-  <user name="stroncium"/>
-  <tag v="nodejs"/> <tag v="node"/> <tag v="js"/>
-  <tag v="binding"/>
-  <description>Bindings for node.js with additional typing.</description>
-  <version name="0.01">Not ready.</version>
-</project>
