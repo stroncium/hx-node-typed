@@ -1,6 +1,8 @@
 package node;
 import node.HaxeInit;
 import node.EventEmitter;
+import node.stream.ReadableImpl;
+import node.stream.WritableImpl;
 
 private typedef RequestOptions = {
   ?host:String,
@@ -24,11 +26,11 @@ extern class Http{
   public static var globalAgent:Agent;
   public static function createServer(listener:ServerRequest->ServerResponse->Void):Server;
 
-  @:overload(function(options:String, cb:ClientResponse->Void):ClientRequest{})
+  // @:overload(function(options:String, cb:ClientResponse->Void):ClientRequest{})
   public static function request(options:RequestOptions, cb:ClientResponse->Void):ClientRequest;
 
-  @:overload(function(options:String, cb:ClientResponse->Void):Void{})
-  public static function get(options:RequestOptions, cb:ClientResponse->Void):Void;
+  // @:overload(function(options:String, cb:ClientResponse->Void):ClientRequest{})
+  public static function get(options:RequestOptions, cb:ClientResponse->Void):ClientRequest;
 
 
 
@@ -42,7 +44,7 @@ extern class Http{
   //~ Upgrade;
   //~ ClientError;
 //~ }
-extern class Server extends EventEmitter<String>{
+extern class Server extends EventEmitter{
   @:overload(function(port:Int, ?hostname:String, ?backlog:Int, ?cb:Void->Void):Void{})
   @:overload(function(path:String, cb:Void->Void):Void{})
   @:overload(function(handle:Dynamic, ?cb:Void->Void):Void{})
@@ -57,16 +59,17 @@ extern class Server extends EventEmitter<String>{
   //~ End;
   //~ Close;
 //~ }
-extern class ServerRequest extends EventEmitter<String>{
+extern class ServerRequest extends ReadableImpl{
   public var method(default,null):String;
   public var url(default, null):String;
   public var headers:Dynamic;
   public var trailers(default, null):Dynamic; //TODO
   public var httpVersion(default, null):String;
-  public function setEncoding(?encoding:String  = 'utf8'):Void; //TODO
-  public function pause():Void;
-  public function resume():Void;
+  // public function pause():Void;
+  // public function resume():Void;
   public var connection:node.net.Socket;
+  public var postData:Dynamic;
+  public var postFiles:Dynamic;
 
 }
 
@@ -74,7 +77,7 @@ extern class ServerRequest extends EventEmitter<String>{
 //~ enum ServerResponseEvent{
   //~ Close;
 //~ }
-extern class ServerResponse extends EventEmitter<String>{
+extern class ServerResponse extends WritableImpl{
   public var statusCode:Int;
   public var sendDate:Bool;
   public function writeContinue():Void;
@@ -83,12 +86,12 @@ extern class ServerResponse extends EventEmitter<String>{
   public function setHeader(name:String, value:String):Void;
   public function getHeader(name:String):String;
   public function removeHeader(name:String):Void;
-  @:overload(function (chunk:Buffer, ?encoding:String = 'utf8'):Void{})
-  public function write(chunk:String):Void;
+  // @:overload(function (chunk:Buffer, ?encoding:String = 'utf8'):Void{})
+  // public function write(chunk:String):Void;
   public function addTrailers(headers:Dynamic):Void;
   @:overload(function(data:Buffer, ?encoding:String = 'utf8'):Void{})
   @:overload(function(data:String):Void{})
-  public function end():Void;
+  // public function end(?data:String):Void;
 }
 
 extern class Agent{
@@ -104,13 +107,13 @@ extern class Agent{
   //~ Upgrade;
   //~ Continue;
 //~ }
-extern class ClientRequest extends EventEmitter<String>{
-  @:overload(function (chunk:Buffer, ?encoding:String = 'utf8'):Void{})
-  public function write(chunk:String):Void;
+extern class ClientRequest extends WritableImpl{
+  // @:overload(function (chunk:String, ?encoding:String = 'utf8'):Void{})
+  // public function write(chunk:Buffer):Void;
 
-  @:overload(function(data:Buffer, ?encoding:String = 'utf8'):Void{})
-  @:overload(function(data:String):Void{})
-  public function end():Void;
+  // @:overload(function(data:String, ?encoding:String = 'utf8'):Void{})
+  // @:overload(function(data:Buffer):Void{})
+  // public function end():Void;
 
   public function abort():Void;
   public function setTimeout(timeout:Int, cb:Void->Void):Void;
@@ -123,12 +126,11 @@ extern class ClientRequest extends EventEmitter<String>{
   //~ end;
   //~ close;
 //~ }
-extern class ClientResponse extends EventEmitter<String>{
+extern class ClientResponse extends node.stream.ReadableImpl{
   public var statusCode:Int;
   public var httpVersion:String;
   public var headers:Dynamic;
   public var trailers:Dynamic;
-  public function setEncoding(?encoding:String = 'utf8'):Void;
-  public function pause():Void;
-  public function resume():Void;
+  // public function pause():Void;
+  // public function resume():Void;
 }

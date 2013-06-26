@@ -2,6 +2,8 @@ package node;
 @:native("Buffer")
 extern class Buffer implements ArrayAccess<Int> {
 
+  public static function concat(buffers:Array<Buffer>, ?byteLength:Int):Buffer;
+
    @:overload(function(str:String,?enc:String):Void {})
    @:overload(function(arr:Array<Int>):Void {})
   function new(size:Int):Void;

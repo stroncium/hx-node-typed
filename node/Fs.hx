@@ -182,8 +182,8 @@ extern class WriteStream extends node.stream.ReadableImpl{
 }
 
 @:native('node.fs.FSWatcher')
-extern class FSWatcher<T> extends EventEmitter<String>{
-  public function hasEventChange():Void;
-  public function hasEventError():Void;
+extern class FSWatcher<T> extends EventEmitter{
+  // public function hasEventChange():Void;
+  // public function hasEventError():Void;
   public function close():Void;
 }

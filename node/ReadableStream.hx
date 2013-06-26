@@ -1,10 +1,10 @@
 package node;
 
-interface ReadableStream{
-  public function hasEventData():Void;
-  public function hasEventEnd():Void;
-  public function hasEventError():Void;
-  public function hasEventClose():Void;
+interface ReadableStream implements EventEmitter{
+  // public function hasEventData():Void;
+  // public function hasEventEnd():Void;
+  // public function hasEventError():Void;
+  // public function hasEventClose():Void;
 
   public var readable:Bool;
   public function setEncoding(encoding:String):Void;
