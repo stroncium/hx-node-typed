@@ -47,18 +47,13 @@ extern class Stats{
 }
 
 @:native('node.Fs.SymlinkType')
-extern enum SymlinkType{
-  Dir;
-  File;
-  Junction;
-  Custom(s:String);
-}
+extern enum SymlinkType{ Dir; File; Junction; Custom(s:String); }
 
 extern class Fs{
-  static function __init__():Void{
-    untyped __js__("node.Fs = require('fs')");
-    untyped __js__("node.Fs.FileOpenFlags = {Read: 'r', R: 'r',ReadWrite: 'r+', RPlus: 'r+',ReadSync: 'rs', RS: 'rs',ReadWriteSync: 'rs+', RSPlus: 'rs+',Write: 'w', W: 'w',WriteExclusive: 'wx', WX: 'wx',WriteRead: 'w+', WPlus: 'w+',WriteReadExclusive: 'wx+', WXPlus: 'wx+',Append: 'a', A: 'a',AppendExclusive: 'ax', AX: 'ax',ReadAppend: 'a+', APlus: 'a+',ReadAppendExclusive: 'ax+', AXPlus: 'ax+', Custom: function(s){return s;}}");
-    untyped __js__("node.Fs.SymlinkType = {Dir:'dir', File:'file', Junction:'junction', Custom: function(s){return s;} }");
+  static function __init__():Void untyped {
+    Fs = HaxeInit.require('fs');
+    FileOpenFlags = {Read: 'r', R: 'r',ReadWrite: 'r+', RPlus: 'r+',ReadSync: 'rs', RS: 'rs',ReadWriteSync: 'rs+', RSPlus: 'rs+',Write: 'w', W: 'w',WriteExclusive: 'wx', WX: 'wx',WriteRead: 'w+', WPlus: 'w+',WriteReadExclusive: 'wx+', WXPlus: 'wx+',Append: 'a', A: 'a',AppendExclusive: 'ax', AX: 'ax',ReadAppend: 'a+', APlus: 'a+',ReadAppendExclusive: 'ax+', AXPlus: 'ax+', Custom: function(s){return s;}};
+    SymlinkType = {Dir:'dir', File:'file', Junction:'junction', Custom: function(s){return s;} };
   }
   public static function rename(oldPath:String, newPath:String, ?cb:CB):Void;
   public static function renameSync(oldPath:String, newPath:String):Void;
