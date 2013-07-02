@@ -1,0 +1,13 @@
+{
+  "name": "node-typed",
+  "license": "MIT",
+  "tags": ["nodejs","node","js","binding"],
+  "description": "Bindings for node.js with additional typing.",
+  "contributors": ["stroncium"],
+  "releasenote": "Not ready.",
+  "version": "0.0.1",
+  "url": "https://github.com/stroncium/hx-node-typed",
+  "dependencies": {
+
+  }
+}

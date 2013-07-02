@@ -1,6 +1,8 @@
 package node;
 @:native("Buffer")
-extern class Buffer implements ArrayAccess<Int> {
+extern class Buffer implements ArrayAccess<Int>{
+  static function __init__():Void{
+  }
 
   public static function concat(buffers:Array<Buffer>, ?byteLength:Int):Buffer;
 

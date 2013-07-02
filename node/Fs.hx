@@ -4,7 +4,7 @@ private typedef CB = Dynamic->Void;
 private typedef FileDescriptor = Dynamic;
 
 @:native('node.Fs.FileOpenFlags')
-enum FileOpenFlags{
+extern enum FileOpenFlags{
   Read; R; //Open file for reading. An exception occurs if the file does not exist.
   ReadWrite; RPlus; //Open file for reading and writing. An exception occurs if the file does not exist.
   ReadSync; RS; //Open file for reading in synchronous mode. Instructs the operating system to bypass the local file system cache.
@@ -51,7 +51,7 @@ extern enum SymlinkType{ Dir; File; Junction; Custom(s:String); }
 
 extern class Fs{
   static function __init__():Void untyped {
-    Fs = HaxeInit.require('fs');
+    Fs = InitTools.require('fs');
     FileOpenFlags = {Read: 'r', R: 'r',ReadWrite: 'r+', RPlus: 'r+',ReadSync: 'rs', RS: 'rs',ReadWriteSync: 'rs+', RSPlus: 'rs+',Write: 'w', W: 'w',WriteExclusive: 'wx', WX: 'wx',WriteRead: 'w+', WPlus: 'w+',WriteReadExclusive: 'wx+', WXPlus: 'wx+',Append: 'a', A: 'a',AppendExclusive: 'ax', AX: 'ax',ReadAppend: 'a+', APlus: 'a+',ReadAppendExclusive: 'ax+', AXPlus: 'ax+', Custom: function(s){return s;}};
     SymlinkType = {Dir:'dir', File:'file', Junction:'junction', Custom: function(s){return s;} };
   }

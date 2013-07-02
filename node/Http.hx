@@ -19,7 +19,7 @@ private typedef RequestOptions = {
 
 extern class Http{
   static function __init__():Void{
-    untyped Http = HaxeInit.require('http');
+    untyped Http = InitTools.require('http');
   }
 
   public static var STATUS_CODES:Array<String>;
