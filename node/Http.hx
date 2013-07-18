@@ -71,6 +71,9 @@ extern class ServerRequest extends ReadableImpl{
   public var postData:Dynamic;
   public var postFiles:Dynamic;
 
+
+  public function setTimeout(msec:Int):Void;
+
 }
 
 //~ @:native('node.Http.ServerResponseEvent')
